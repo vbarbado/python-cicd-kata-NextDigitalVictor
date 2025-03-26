@@ -13,16 +13,4 @@ jobs:
         with:
           python-version-file: "pyproject.toml"
       - run: uv run ruff format .
-  build:
-    enviroment: poc
-    needs: code-quality
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: docker build . -t vbarbado/python-cicd-kata-NextDigitalVictor:latest
-      - name: Login to Docker Hub
-        uses: docker/login-actions@v3
-        with:
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - run: docker push vbarbado/python-cicd-kata-NextDigitalVictor:latest
+
